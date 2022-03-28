@@ -23,10 +23,10 @@ public class Post implements CommandExecutor {
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
     if (sender instanceof Player player) {
       if (Objects.requireNonNull(CommandHandler.plugin.config.getString("server-url")).isEmpty()) {
-        player.sendMessage(ChatFormatting.RED + "Mailman server URL not set!");
+        player.sendMessage(ChatFormatting.RED + "Postman server URL not set!");
       } else {
         try {
-          URL url = new URL("https://ptsv2.com/t/ev7uq-1648411817/post");
+          URL url = new URL(CommandHandler.plugin.config.getString("server-url"));
           HttpURLConnection http = (HttpURLConnection) url.openConnection();
           http.setRequestMethod("POST");
           http.setDoOutput(true);
